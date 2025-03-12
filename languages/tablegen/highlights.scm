@@ -1,52 +1,90 @@
-; Comments
-((comment) @comment
-  (#match? @comment "^//.*$"))
-((comment) @comment.block
-  (#match? @comment "^/\\*.*\\*/$"))
+[
+  (comment)
+  (multiline_comment)
+] @comment
 
-; Preprocessor directives
-((directive) @keyword.control
-  (#match? @keyword.control "^#(ifdef|ifndef|else|endif|define|include)"))
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+  "<"
+  ">"
+] @punctuation.bracket
 
-; Strings
-(string) @string
-(string_content) @string
+[
+  ","
+  ";"
+  "."
+] @punctuation.delimiter
 
-; Integers
-((integer) @number
-  (#match? @number "^\\b\\d+\\b"))
-((integer) @number.hex
-  (#match? @number.hex "^\\b0[xX][a-fA-F0-9]+\\b"))
-((integer) @number.binary
-  (#match? @number.binary "^\\b0b[01]+\\b"))
+[
+  "#"
+  "-"
+  "..."
+  ":"
+] @operator
 
-; Built-in types
-((type) @type
-  (#match? @type "^\\b(bit|code|dag|int|string|bits|list)\\b"))
+[
+  "="
+  "!cond"
+  (operator_keyword)
+] @function
 
-; Keywords
-((keyword) @keyword
-  (#match? @keyword "^\\b(assert|else|foreach|defset|defvar|field|if|in|let|then)\\b"))
-((keyword) @keyword
-  (#match? @keyword "^\\b(false|true)\\b"))
-((keyword) @keyword.operator
-  (#eq? @keyword.operator "?"))
+[
+  "true"
+  "false"
+] @constant.builtin.boolean
 
-; Class and definition keywords
-((keyword) @keyword.other
-  (#match? @keyword.other "^\\b(multiclass|class|defm|def)\\b"))
+[
+  "?"
+] @constant.builtin
 
-; Bang operators
-((operator) @function
-  (#match? @function "^\\!\\w+"))
+(var) @variable
 
-; Variables and identifiers
-((identifier) @variable
-  (#match? @variable "^\\b\\w+\\b"))
-((identifier) @variable.special
-  (#match? @variable.special "^\\$\\w+"))
+(template_arg (identifier) @variable.parameter)
 
-; Punctuation
-["{" "}" "[" "]" "(" ")" "<" ">"] @punctuation.bracket
-[";" ":"] @punctuation.delimiter
-("=") @operator
+(_ argument: (value (identifier) @variable.parameter))
+
+(type) @type
+
+"code" @type.builtin
+
+(number) @constant.numeric.integer
+[
+  (string_string)
+  (code_string)
+] @string
+
+(preprocessor) @keyword.directive
+
+[
+  "class"
+  "field"
+  "let"
+  "defvar"
+  "def"
+  "defset"
+  "defvar"
+  "assert"
+] @keyword
+
+[
+  "let"
+  "in"
+  "foreach"
+  "if"
+  "then"
+  "else"
+] @keyword.operator
+
+"include" @keyword.control.import
+
+[
+  "multiclass"
+  "defm"
+] @namespace
+
+(ERROR) @error
