@@ -1,9 +1,9 @@
 id = "zed-tablegen"
-name = "TableGen Extension"
+name = "TableGen"
 version = "0.1.0"
 schema_version = 1
-author = ["abrasumente <why-excuse-quail@duck.com>"]
-description = "TableGen language support for Zed"
+authors = ["abrasumente <why-excuse-quail@duck.com>"]
+description = "TableGen support."
 repository = "https://github.com/abrasumente233/zed-tablegen"
 
 [grammars.tablegen]
