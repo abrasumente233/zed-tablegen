@@ -1,0 +1,7 @@
+name = "TableGen"
+grammar = "tablegen"
+path_suffixes = ["td"]
+line_comments = ["// "]
+block_comments = [["/*", "*/"]]
+tab_size = 2
+first_line_pattern = "^(//.*|include.*|def.*|class.*|multiclass.*)"

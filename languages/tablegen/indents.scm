@@ -1,0 +1,7 @@
+((class_definition "{" @start "}" @end) @indent)
+((multiclass_definition "{" @start "}" @end) @indent)
+((def_definition "{" @start "}" @end) @indent)
+((defm_definition "{" @start "}" @end) @indent)
+("[" @start "]" @end @indent)
+("{" @start "}" @end @indent)
+("(" @start ")" @end @indent)

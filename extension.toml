@@ -1,0 +1,10 @@
+name = "TableGen Extension"
+# author = "abrasumente"
+id = "tablegen"
+version = "0.1.0"
+description = "TableGen language support for Zed"
+repository = "https://github.com/abrasumente233/zed-tablegen"
+
+[grammars.tablegen]
+repository = "https://github.com/Flakebi/tree-sitter-tablegen"
+rev = "3e9c4822ab5cdcccf4f8aa9dcd42117f736d51d9"
